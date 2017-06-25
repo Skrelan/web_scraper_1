@@ -1,6 +1,8 @@
 import xml.etree.ElementTree
 import urllib
 from BeautifulSoup import BeautifulSoup as soup
+import csv
+import datetime
 
 """
 ALL THE CONFIGS
@@ -97,6 +99,19 @@ def parse_child_page(web_url):
 	child_html_parse(html,web_url)
 
 
+def dict_to_csv(dict_data):
+	"""
+	About: This function writes the dict data into an csv
+		Args: dict_data (dict)
+		Returns: None
+	"""
+	ts = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+	keys = client_data[0].keys()
+	with open('output/data{0}.csv'.format(ts),'wb') as output:
+		dict_writer = csv.DictWriter(output,keys)
+		dict_writer.writeheader()
+		dict_writer.writerows(dict_data)
+
 
 def main():
 	"""
@@ -111,6 +126,8 @@ def main():
 	for link in anchors:
 		print link
 		parse_child_page(link)
+
+	dict_to_csv(client_data)
 
 if __name__ == '__main__':
 	main()
