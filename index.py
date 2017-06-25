@@ -88,7 +88,7 @@ def parse_child_page(web_url):
 		page_soup = soup(data)
 		for key in client_info.keys():
 			try:
-				client_info[key] = page_soup.findAll(html_classes[key][1], {"class" : html_classes[key][0]})[0].text
+				client_info[key] = page_soup.findAll(html_classes[key][1], {"class" : html_classes[key][0]})[0].text.encode('utf-8')
 			except Exception as e:
 				print "{0} key failed for link {1}".format(key,web_url)
 		client_data.append(client_info)
