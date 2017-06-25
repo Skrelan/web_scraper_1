@@ -1,11 +1,13 @@
-#Specific web scraper
+# Specific web scraper
 
 Requirments:
   * Python 2.7 
   * pip (https://pip.pypa.io/en/stable/installing/)
-  * BeautifulSoup (to download this open up terminal and write sudo pip install BeautifulSoup)
+  * BeautifulSoup (to download this open up terminal and write `sudo pip install BeautifulSoup`)
 
+=== 
 
+Instuctions
   * Step 1: go to the website using your browser (chrome)
   * Step 2: right click inspect
   * Step 3: scroll all the way down, untill there are no more elements that load
