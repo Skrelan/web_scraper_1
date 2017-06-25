@@ -5,7 +5,7 @@ Requirments:
   * pip (https://pip.pypa.io/en/stable/installing/)
   * BeautifulSoup (to download this open up terminal and write `sudo pip install BeautifulSoup`)
 
-=== 
+--- 
 
 Instuctions
   * Step 1: go to the website using your browser (chrome)
