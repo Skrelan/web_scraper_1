@@ -19,4 +19,4 @@ Instuctions
   * Step 9: Once the script finishes running, go to output/ folder and your file should be there
   * Step 10: Have a shot of Tequila
 
-works only for URL http://ebace17.mapyourshow.com/7_0/alphalist.cfm?alpha=* '
+works only for URL `http://ebace17.mapyourshow.com/7_0/alphalist.cfm?alpha=*`
