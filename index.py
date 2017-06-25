@@ -2,12 +2,15 @@ import xml.etree.ElementTree
 import urllib
 from BeautifulSoup import BeautifulSoup as soup
 
+"""
+ALL THE CONFIGS
+"""
 web_site = 'http://ebace17.mapyourshow.com{0}'
 end_point = 'http://ebace17.mapyourshow.com/7_0/alphalist.cfm?alpha=*'
 file_name = 'parse/temp.html'
 
-anchors = []
-client_data = []
+anchors = [] #stores all the anchor tags
+client_data = [] #stores the end result
 html_classes = {
 	'phone_number' : ['sc-Exhibitor_PhoneFax','p'],
 	'address': ['sc-Exhibitor_Address','p'],
@@ -17,6 +20,12 @@ html_classes = {
 
 
 def parse_parent_page(file_name):
+	"""
+	About: This function parses the parent page and stores all the 
+		   links pointing to the vendors
+		Args: file_name (str)
+		Returns: Bool
+	"""
 	try:
 		with open(file_name, 'r') as fd:
 			for line in fd:
@@ -33,8 +42,20 @@ def parse_parent_page(file_name):
 
 
 def parse_child_page(web_url):
+	"""
+	About: This function is recursively called and parses 
+		    the pages whoes url is given to it 
+		Args: web_url (str)
+		Returns: None
+	"""
 	
 	def child_open(web_url):
+		"""
+		About: This is a helper function which loads the html
+			   of the passed url
+			Args: web_url (str)
+			Returns
+		"""
 		try:
 			data = urllib.urlopen(web_url)
 			result = data.read()
@@ -47,19 +68,14 @@ def parse_child_page(web_url):
 			return False
 
 
-	def child_write_file(data,web_url):
-		try:
-			with open('parse/temp_a.html','wb') as fd:
-				for line in data:
-					fd.write(line)
-
-		except Exception as e:
-			print "anchor failed"
-			print web_url
-			return False
-
-
 	def child_html_parse(data,web_url):
+		"""
+		About: This is a helper function which parses the html
+			   using the keys and values for the python dict 
+			   named html_classes
+			Args: data (str), web_url (str)
+			Returns: None
+		"""
 		client_info = {
 			'name':None,
 			'address':None,
@@ -83,6 +99,11 @@ def parse_child_page(web_url):
 
 
 def main():
+	"""
+	About: This is the main function, it runs all the above logic
+		Args: None
+		Returns: None
+	"""
 	if not parse_parent_page(file_name):
 		print "Error"
 		return
@@ -92,5 +113,4 @@ def main():
 		parse_child_page(link)
 
 if __name__ == '__main__':
-	#print wrapper()
 	main()
